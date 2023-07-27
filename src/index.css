@@ -10,9 +10,11 @@ html {
   --dark: 32, 33, 35;
   --confirm: 25, 195, 125;
   --link: 72, 161, 232;
+  --bronze: 112, 66, 20;
+  --silver: 82, 82, 82;
+  --gold: 166, 124, 0;
 
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  line-height: 1.5;
   font-weight: 400;
   color: rgb(var(--white));
 
@@ -20,12 +22,13 @@ html {
 }
 
 body {
-  margin: 0 auto;
-  max-width: 1400px;
   height: 100%;
-  position: relative;
+  margin: 0;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1000px;
 }

@@ -1,10 +1,11 @@
 import Styles from "./App.module.css";
+import NewTransScreen from "./components/NewTransPage/NewTransScreen";
 
 function App() {
   return (
-    <>
-      <h1>HELLO WORLD!</h1>
-    </>
+    <div className={Styles["app-container"]}>
+      <NewTransScreen />
+    </div>
   );
 }
 
