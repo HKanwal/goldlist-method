@@ -12,7 +12,7 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <div className={Styles["app-container"]}>
-        <NewTransScreen targetLang="French" />
+        <NewTransScreen targetLang="French" pageNumber={1} />
       </div>
     </ThemeProvider>
   );

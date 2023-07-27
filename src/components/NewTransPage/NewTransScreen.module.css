@@ -37,3 +37,22 @@
   width: 100%;
   height: 30px;
 }
+
+.page-number-container {
+  position: relative;
+  margin-top: 50px;
+}
+
+.page-number {
+  font-size: 26px;
+}
+
+.slash {
+  color: rgba(var(--white), 0.5);
+  font-size: 20px;
+}
+
+.total-pages {
+  color: rgba(var(--white), 0.5);
+  font-size: 20px;
+}
