@@ -1,0 +1,35 @@
+.screen-container {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  width: calc(100% - 2 * 10px);
+  background: rgb(var(--bronze));
+  padding: 14px 10px;
+}
+
+.title {
+  margin: 0;
+  font-weight: 400;
+}
+
+.subtitle {
+  margin: 0;
+  margin-left: 2px;
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+.btns-container {
+  margin-top: 50px;
+  width: 80%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

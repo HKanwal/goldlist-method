@@ -1,24 +1,19 @@
 import { TextField } from "@mui/material";
-import Styles from "./NewTransScreen.module.css";
+import Styles from "./NewTransPage.module.css";
 import { useState } from "react";
 import constants from "../../constants";
 
-interface NewTransScreenProps {
+interface NewTransPageProps {
   targetLang: "French" | "Spanish";
   pageNumber: number;
 }
 
-function NewTransScreen(props: NewTransScreenProps) {
+function NewTransPage(props: NewTransPageProps) {
   const [phrase, setPhrase] = useState("");
   const [meaning, setMeaning] = useState("");
 
   return (
-    <div className={Styles.screenContainer}>
-      <header className={Styles.header}>
-        <h1 className={Styles.title}>BRONZELIST</h1>
-        <h3 className={Styles.subtitle}>CREATE HEADLIST</h3>
-      </header>
-
+    <div className={Styles.container}>
       <div className={Styles["page-number-container"]}>
         <span className={Styles["page-number"]}>{props.pageNumber}</span>
         <span className={Styles.slash}>/</span>
@@ -46,4 +41,4 @@ function NewTransScreen(props: NewTransScreenProps) {
   );
 }
 
-export default NewTransScreen;
+export default NewTransPage;
