@@ -1,5 +1,5 @@
 import { useState } from "react";
-import NewTransPage from "../NewTransPage/NewTransPage";
+import NewTransPage, { NewTransPageProps } from "../NewTransPage/NewTransPage";
 import Styles from "./BronzelistScreen.module.css";
 import { Button } from "@mui/material";
 import constants from "../../constants";
@@ -7,12 +7,8 @@ import constants from "../../constants";
 function BronzelistScreen() {
   const [pageNum, setPageNum] = useState(1);
 
-  const incrementPageNum = () => {
+  const handleNextClick = () => {
     setPageNum((prevState) => prevState + 1);
-  };
-
-  const decrementPageNum = () => {
-    setPageNum((prevState) => prevState - 1);
   };
 
   return (
@@ -22,18 +18,12 @@ function BronzelistScreen() {
         <h3 className={Styles.subtitle}>CREATE HEADLIST</h3>
       </header>
 
-      <NewTransPage pageNumber={pageNum} targetLang="French" />
+      <NewTransPage pageNumber={pageNum} />
 
       <div className={Styles["btns-container"]}>
-        {pageNum > 1 ? (
-          <Button variant="contained" onClick={decrementPageNum}>
-            Prev
-          </Button>
-        ) : (
-          <div></div>
-        )}
+        <div id="Prev btn placeholder"></div>
         {pageNum < constants.headlistLength ? (
-          <Button variant="contained" onClick={incrementPageNum}>
+          <Button variant="contained" onClick={handleNextClick}>
             Next
           </Button>
         ) : (

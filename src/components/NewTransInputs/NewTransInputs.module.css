@@ -1,0 +1,12 @@
+.animated-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  transition: transform 0.5s ease;
+}
+
+.input-spacer {
+  width: 100%;
+  height: 20px;
+}

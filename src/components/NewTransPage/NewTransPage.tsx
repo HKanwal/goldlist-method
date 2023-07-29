@@ -1,16 +1,13 @@
-import { TextField } from "@mui/material";
 import Styles from "./NewTransPage.module.css";
-import { useState } from "react";
 import constants from "../../constants";
+import NewTransInputs from "../NewTransInputs/NewTransInputs";
 
-interface NewTransPageProps {
-  targetLang: "French" | "Spanish";
+export interface NewTransPageProps {
   pageNumber: number;
 }
 
 function NewTransPage(props: NewTransPageProps) {
-  const [phrase, setPhrase] = useState("");
-  const [meaning, setMeaning] = useState("");
+  const pages = [...Array(constants.headlistLength).keys()].map((x) => x + 1);
 
   return (
     <div className={Styles.container}>
@@ -21,21 +18,16 @@ function NewTransPage(props: NewTransPageProps) {
       </div>
 
       <div className={Styles["inputs-container"]}>
-        <TextField
-          variant="filled"
-          label="Target Word or Phrase"
-          placeholder={`enter in ${props.targetLang}...`}
-          value={phrase}
-          onChange={(e) => setPhrase(e.target.value)}
-        />
-        <div className={Styles["input-spacer"]}></div>
-        <TextField
-          variant="filled"
-          label="Meaning"
-          placeholder="enter in English..."
-          value={meaning}
-          onChange={(e) => setMeaning(e.target.value)}
-        />
+        {pages.map((i) => {
+          return (
+            <NewTransInputs
+              key={i}
+              targetLang="French"
+              relativePageIndex={i - props.pageNumber}
+              position={i === 1 ? "relative" : "absolute"}
+            />
+          );
+        })}
       </div>
     </div>
   );
