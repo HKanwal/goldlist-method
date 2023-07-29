@@ -1,5 +1,5 @@
 import { useState } from "react";
-import NewTransPage, { NewTransPageProps } from "../NewTransPage/NewTransPage";
+import NewTransPage from "../NewTransPage/NewTransPage";
 import Styles from "./BronzelistScreen.module.css";
 import { Button } from "@mui/material";
 import constants from "../../constants";

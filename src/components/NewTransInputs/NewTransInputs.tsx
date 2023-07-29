@@ -5,9 +5,16 @@ import { useState } from "react";
 interface NewTransInputsProps {
   targetLang: "French" | "Spanish";
   position: "relative" | "absolute";
-  relativePageIndex: number;
+  /**
+   * In terms of # of pages from the currently displayed page.
+   * Can be positive or negative.
+   */
+  displacement: number;
 }
 
+/**
+ * Should have a positioned parent.
+ */
 function NewTransInputs(props: NewTransInputsProps) {
   const [phrase, setPhrase] = useState("");
   const [meaning, setMeaning] = useState("");
@@ -21,7 +28,7 @@ function NewTransInputs(props: NewTransInputsProps) {
     <div
       className={Styles["animated-container"]}
       style={{
-        transform: `translateX(${props.relativePageIndex * window.screen.width}px)`,
+        transform: `translateX(${props.displacement * window.screen.width}px)`,
         ...positionStyles,
       }}
     >

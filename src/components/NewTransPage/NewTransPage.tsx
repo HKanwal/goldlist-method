@@ -13,8 +13,7 @@ function NewTransPage(props: NewTransPageProps) {
     <div className={Styles.container}>
       <div className={Styles["page-number-container"]}>
         <span className={Styles["page-number"]}>{props.pageNumber}</span>
-        <span className={Styles.slash}>/</span>
-        <span className={Styles["total-pages"]}>{constants.headlistLength}</span>
+        <span className={Styles["total-pages"]}>/{constants.headlistLength}</span>
       </div>
 
       <div className={Styles["inputs-container"]}>
@@ -23,7 +22,7 @@ function NewTransPage(props: NewTransPageProps) {
             <NewTransInputs
               key={i}
               targetLang="French"
-              relativePageIndex={i - props.pageNumber}
+              displacement={i - props.pageNumber}
               position={i === 1 ? "relative" : "absolute"}
             />
           );
