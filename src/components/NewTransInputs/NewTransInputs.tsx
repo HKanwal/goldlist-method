@@ -8,13 +8,11 @@ interface NewTransInputsProps {
   /**
    * In terms of # of pages from the currently displayed page.
    * Can be positive or negative.
+   * Will animate to new displacement if it changes.
    */
   displacement: number;
 }
 
-/**
- * Should have a positioned parent.
- */
 function NewTransInputs(props: NewTransInputsProps) {
   const [phrase, setPhrase] = useState("");
   const [meaning, setMeaning] = useState("");
