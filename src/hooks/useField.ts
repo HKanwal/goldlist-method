@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type Field = {
   value: string;
@@ -7,20 +7,30 @@ type Field = {
   errors: string[];
 };
 
-type Validator = (field: Field) => boolean;
+type Validator = {
+  name: string;
+
+  /**
+   * Returns false if error, true if valid.
+   */
+  fn: (field: Field) => boolean;
+};
 type Validators = {
   required: Validator;
 };
 
 export const Validators: Validators = {
-  required: (field) => {
-    return !field.touched || field.value.length > 0;
+  required: {
+    name: "required",
+    fn: (field) => {
+      return !field.touched || field.value.length > 0;
+    },
   },
 };
 
 /**
  * Pass the returned ref to your field input's `ref` prop.
- * @returns [ref, value] where changes to value cause a re-render but
+ * @returns [ref, field] where changes to field cause a re-render but
  * changes to ref do not.
  */
 function useField(
@@ -34,6 +44,27 @@ function useField(
     errors: [],
   });
 
+  const validate = useCallback(() => {
+    for (const validator of validators) {
+      if (!validator.fn(field)) {
+        if (!field.errors.includes(validator.name)) {
+          setField((prevState) => {
+            return { ...prevState, errors: [...prevState.errors, validator.name] };
+          });
+        }
+      } else {
+        if (field.errors.includes(validator.name)) {
+          setField((prevState) => {
+            return {
+              ...prevState,
+              errors: prevState.errors.filter((err) => err !== validator.name),
+            };
+          });
+        }
+      }
+    }
+  }, [field, validators]);
+
   useEffect(() => {
     if (ref.current !== undefined) {
       ref.current.onfocus = () => {
@@ -44,41 +75,19 @@ function useField(
 
       ref.current.oninput = () => {
         setField((prevState) => {
-          let newErrors = [...prevState.errors];
-          if (
-            ref.current &&
-            ref.current.value !== "" &&
-            validators.includes(Validators.required) &&
-            prevState.errors.includes("required")
-          ) {
-            newErrors = newErrors.filter((err) => err !== "required");
-          } else if (
-            ref.current &&
-            ref.current.value === "" &&
-            validators.includes(Validators.required) &&
-            !prevState.errors.includes("required")
-          ) {
-            newErrors = [...newErrors, "required"];
-          }
-          return { ...prevState, dirty: true, value: ref.current?.value || "", errors: newErrors };
+          return { ...prevState, dirty: true, value: ref.current!.value };
         });
       };
 
       ref.current.onblur = () => {
-        if (
-          field.touched &&
-          field.value === "" &&
-          validators.includes(Validators.required) &&
-          !field.errors.includes("required")
-        ) {
-          setField((prevState) => {
-            const newErrors = [...prevState.errors, "required"];
-            return { ...prevState, errors: newErrors };
-          });
-        }
+        validate();
       };
     }
-  }, [ref, field]);
+  }, [validate]);
+
+  useEffect(() => {
+    validate();
+  }, [field.value, validate]);
 
   return [ref, field];
 }
