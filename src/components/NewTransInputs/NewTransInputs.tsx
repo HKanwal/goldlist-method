@@ -1,8 +1,9 @@
 import { TextField } from "@mui/material";
 import Styles from "./NewTransInputs.module.css";
 import useField, { Validators } from "../../hooks/useField";
+import { useEffect } from "react";
 
-interface NewTransInputsProps {
+export interface NewTransInputsProps {
   targetLang: "French" | "Spanish";
   position: "relative" | "absolute";
   /**
@@ -11,11 +12,17 @@ interface NewTransInputsProps {
    * Will animate to new displacement if it changes.
    */
   displacement: number;
+  onValidityChange: (valid: boolean) => void;
 }
 
 function NewTransInputs(props: NewTransInputsProps) {
   const [phraseRef, phraseField] = useField([Validators.required]);
   const [meaningRef, meaningField] = useField([Validators.required]);
+  const valid =
+    phraseField.dirty &&
+    meaningField.dirty &&
+    phraseField.errors.length === 0 &&
+    meaningField.errors.length === 0;
 
   const positionStyles: React.CSSProperties =
     props.position === "absolute"
@@ -35,6 +42,10 @@ function NewTransInputs(props: NewTransInputsProps) {
       : meaningField.errors[0] === "required"
       ? "Please enter a meaning"
       : "Unhandled error";
+
+  useEffect(() => {
+    props.onValidityChange(valid);
+  }, [valid, props.onValidityChange]);
 
   return (
     <div

@@ -6,6 +6,7 @@ import constants from "../../constants";
 
 function BronzelistScreen() {
   const [pageNum, setPageNum] = useState(1);
+  const [pageValid, setPageValid] = useState(false);
 
   const handleNextClick = () => {
     setPageNum((prevState) => prevState + 1);
@@ -18,12 +19,12 @@ function BronzelistScreen() {
         <h3 className={Styles.subtitle}>CREATE HEADLIST</h3>
       </header>
 
-      <NewTransPage pageNumber={pageNum} />
+      <NewTransPage pageNumber={pageNum} onValidityChange={setPageValid} />
 
-      <div className={Styles["btns-container"]}>
+      <div className={Styles["btns-container"]} style={{ opacity: !pageValid ? "0" : "100%" }}>
         <div id="Prev btn placeholder"></div>
         {pageNum < constants.headlistLength ? (
-          <Button variant="contained" onClick={handleNextClick}>
+          <Button variant="contained" onClick={handleNextClick} disabled={!pageValid}>
             Next
           </Button>
         ) : (

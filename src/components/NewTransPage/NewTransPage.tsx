@@ -1,9 +1,10 @@
 import Styles from "./NewTransPage.module.css";
 import constants from "../../constants";
-import NewTransInputs from "../NewTransInputs/NewTransInputs";
+import NewTransInputs, { NewTransInputsProps } from "../NewTransInputs/NewTransInputs";
 
 export interface NewTransPageProps {
   pageNumber: number;
+  onValidityChange: NewTransInputsProps["onValidityChange"];
 }
 
 function NewTransPage(props: NewTransPageProps) {
@@ -24,6 +25,7 @@ function NewTransPage(props: NewTransPageProps) {
               targetLang="French"
               displacement={i - props.pageNumber}
               position={i === 1 ? "relative" : "absolute"}
+              onValidityChange={props.onValidityChange}
             />
           );
         })}
