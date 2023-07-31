@@ -86,8 +86,9 @@ function useField(
   }, [validate]);
 
   useEffect(() => {
+    console.log("called validate from use effect");
     validate();
-  }, [field.value, validate]);
+  }, [field.value]);
 
   return [ref, field];
 }
