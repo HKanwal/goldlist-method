@@ -1,6 +1,7 @@
 import Styles from "./NewTransPage.module.css";
 import constants from "../../constants";
 import NewTransInputs, { NewTransInputsProps } from "../NewTransInputs/NewTransInputs";
+import { useEffect } from "react";
 
 export interface NewTransPageProps {
   pageNumber: number;
@@ -10,6 +11,11 @@ export interface NewTransPageProps {
 
 function NewTransPage(props: NewTransPageProps) {
   const pages = [...Array(constants.headlistLength).keys()].map((x) => x + 1);
+
+  useEffect(() => {
+    props.onValidityChange(false);
+    props.onTransChange({ phrase: "", meaning: "" });
+  }, [props.pageNumber]);
 
   return (
     <div className={Styles.container}>
