@@ -2,6 +2,7 @@ import { TextField } from "@mui/material";
 import Styles from "./NewTransInputs.module.css";
 import useField, { Validators } from "../../hooks/useField";
 import { useEffect } from "react";
+import { Translation } from "../../helpers/StorageWrapper";
 
 export interface NewTransInputsProps {
   targetLang: "French" | "Spanish";
@@ -13,6 +14,7 @@ export interface NewTransInputsProps {
    */
   displacement: number;
   onValidityChange: (valid: boolean) => void;
+  onTransChange: (newTrans: Translation) => void;
 }
 
 function NewTransInputs(props: NewTransInputsProps) {
@@ -46,6 +48,10 @@ function NewTransInputs(props: NewTransInputsProps) {
   useEffect(() => {
     props.onValidityChange(valid);
   }, [valid, props.onValidityChange]);
+
+  useEffect(() => {
+    props.onTransChange({ phrase: phraseField.value, meaning: meaningField.value });
+  }, [phraseField.value, meaningField.value, props.onTransChange]);
 
   return (
     <div

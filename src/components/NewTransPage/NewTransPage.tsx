@@ -5,6 +5,7 @@ import NewTransInputs, { NewTransInputsProps } from "../NewTransInputs/NewTransI
 export interface NewTransPageProps {
   pageNumber: number;
   onValidityChange: NewTransInputsProps["onValidityChange"];
+  onTransChange: NewTransInputsProps["onTransChange"];
 }
 
 function NewTransPage(props: NewTransPageProps) {
@@ -26,6 +27,7 @@ function NewTransPage(props: NewTransPageProps) {
               displacement={i - props.pageNumber}
               position={i === 1 ? "relative" : "absolute"}
               onValidityChange={props.onValidityChange}
+              onTransChange={props.onTransChange}
             />
           );
         })}
