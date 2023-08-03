@@ -18,6 +18,7 @@ html {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   font-weight: 400;
   color: rgb(var(--white));
+  user-select: none;
 
   background: rgb(var(--medium));
 }

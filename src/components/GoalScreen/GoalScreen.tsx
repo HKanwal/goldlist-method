@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import Goal from "../Goal/Goal";
-import { Goal as GoalType } from "../../helpers/StorageWrapper.ts";
 import Styles from "./GoalScreen.module.css";
-import Storage, { getToday } from "../../helpers/StorageWrapper";
+import Storage, { getToday, Goal as GoalType } from "../../helpers/StorageWrapper";
 import constants from "../../constants";
 
 function GoalScreen() {
@@ -38,12 +37,10 @@ function GoalScreen() {
   return (
     <div className={Styles["screen-container"]}>
       <div className={Styles["goal-container"]}>
-        <div>
-          <h2 className={Styles.title}>FOR TODAY</h2>
-          {goals.map((goal) => {
-            return <Goal key={goal.goal} text={goal.goal} completed={goal.completed} />;
-          })}
-        </div>
+        <h2 className={Styles.title}>FOR TODAY</h2>
+        {goals.map((goal) => {
+          return <Goal key={goal.goal} text={goal.goal} completed={goal.completed} />;
+        })}
       </div>
     </div>
   );

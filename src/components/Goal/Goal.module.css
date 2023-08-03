@@ -4,19 +4,34 @@
   display: flex;
   align-items: center;
   padding-top: 15px;
+
+  --space-between: 12px;
+  --svg-dimension: 24px;
 }
 
 .goal-text {
-  margin-left: 15px;
-  font-size: 26px;
+  font-size: 18px;
 }
 
-.unchecked-circle {
-  fill: rgba(var(--white), 0.2);
+.goal-text:hover {
+  cursor: pointer;
 }
 
-.checkmark-svg {
-  background: rgba(var(--white), 0.2);
+.text-completed {
+  margin-left: var(--space-between);
+}
+
+.text-incomplete {
+  margin-left: calc(var(--space-between) + var(--svg-dimension));
+}
+
+.text-incomplete:active {
+  color: rgb(var(--white), 0.5);
+}
+
+.svg {
+  height: var(--svg-dimension);
+  width: var(--svg-dimension);
 }
 
 .checkmark-path {
