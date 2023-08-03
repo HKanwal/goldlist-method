@@ -3,16 +3,7 @@ import NewTransPage from "../NewTransPage/NewTransPage";
 import Styles from "./BronzelistScreen.module.css";
 import { Button } from "@mui/material";
 import constants from "../../constants";
-import Storage, { Translation } from "../../helpers/StorageWrapper";
-
-function formatNum(num: number): string {
-  return num < 10 ? "0" + num : "" + num;
-}
-
-function getToday() {
-  const today = new Date();
-  return `${today.getFullYear()}-${formatNum(today.getMonth() + 1)}-${formatNum(today.getDate())}`;
-}
+import Storage, { Translation, getToday } from "../../helpers/StorageWrapper";
 
 function BronzelistScreen() {
   const [pageNum, setPageNum] = useState(1);
