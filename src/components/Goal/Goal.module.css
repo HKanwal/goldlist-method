@@ -1,0 +1,26 @@
+.goal-container {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.goal-text {
+  margin-left: 10px;
+  font-size: 22px;
+}
+
+.checkmark-path {
+  stroke: rgb(var(--green));
+  stroke-dashoffset: 363.2672119140625;
+  stroke-dasharray: 363.2672119140625;
+  animation: check 1s ease-out forwards;
+}
+
+@keyframes check {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

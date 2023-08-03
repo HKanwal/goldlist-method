@@ -1,6 +1,7 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Styles from "./App.module.css";
 import BronzelistScreen from "./components/BronzelistScreen/BronzelistScreen";
+import GoalScreen from "./components/GoalScreen/GoalScreen";
 
 const darkTheme = createTheme({
   palette: {
@@ -12,7 +13,8 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <div className={Styles["app-container"]}>
-        <BronzelistScreen />
+        <GoalScreen />
+        {/* <BronzelistScreen /> */}
       </div>
     </ThemeProvider>
   );
