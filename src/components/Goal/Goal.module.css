@@ -3,13 +3,20 @@
 
   display: flex;
   align-items: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
 }
 
 .goal-text {
-  margin-left: 10px;
-  font-size: 22px;
+  margin-left: 15px;
+  font-size: 26px;
+}
+
+.unchecked-circle {
+  fill: rgba(var(--white), 0.2);
+}
+
+.checkmark-svg {
+  background: rgba(var(--white), 0.2);
 }
 
 .checkmark-path {

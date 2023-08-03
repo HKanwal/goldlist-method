@@ -7,7 +7,8 @@ function GoalScreen() {
       <div className={Styles["goal-container"]}>
         <div>
           <h2 className={Styles.title}>FOR TODAY</h2>
-          <Goal text="CREATE HEADLIST" completed={false} />
+          <Goal text="CREATE HEADLIST" completed={true} />
+          <Goal text="DISTILL" completed={false} />
         </div>
       </div>
     </div>
