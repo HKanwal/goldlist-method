@@ -5,7 +5,11 @@ import { Button } from "@mui/material";
 import constants from "../../constants";
 import Storage, { Translation, getToday } from "../../helpers/StorageWrapper";
 
-function BronzelistScreen() {
+interface BronzelistScreenProps {
+  onDone: () => void;
+}
+
+function BronzelistScreen(props: BronzelistScreenProps) {
   const [pageNum, setPageNum] = useState(1);
   const [pageValid, setPageValid] = useState(false);
   const [trans, setTrans] = useState<Translation>({ phrase: "", meaning: "" });
@@ -22,7 +26,22 @@ function BronzelistScreen() {
     Storage.putTrans(getToday(), trans);
   };
 
-  const handleDoneClick = () => {};
+  const handleDoneClick = () => {
+    const today = getToday();
+    const goals = Storage.getGoals(today);
+
+    if (goals !== null) {
+      const hlGoal = goals.find(
+        (goal) => goal.goal === "CREATE HEADLIST" || goal.goal === "CONTINUE HEADLIST"
+      );
+      if (hlGoal) {
+        hlGoal.completed = true;
+        Storage.postGoals(today, goals);
+      }
+    }
+
+    props.onDone();
+  };
 
   return (
     <div className={Styles["screen-container"]}>

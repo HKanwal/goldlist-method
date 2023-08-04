@@ -19,7 +19,7 @@ function App() {
         {screen === "GoalScreen" ? (
           <GoalScreen onHeadlistClick={() => setScreen("ListScreen")} />
         ) : (
-          <BronzelistScreen />
+          <BronzelistScreen onDone={() => setScreen("GoalScreen")} />
         )}
       </div>
     </ThemeProvider>
