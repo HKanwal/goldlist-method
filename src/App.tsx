@@ -17,7 +17,7 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <div className={Styles["app-container"]}>
         {screen === "GoalScreen" ? (
-          <GoalScreen onHeadlistClick={() => setScreen("ListScreen")} />
+          <GoalScreen onCreateHeadlist={() => setScreen("ListScreen")} />
         ) : (
           <BronzelistScreen onDone={() => setScreen("GoalScreen")} />
         )}

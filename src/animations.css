@@ -9,3 +9,15 @@
     transform: translateY(0);
   }
 }
+
+@keyframes hide-down {
+  from {
+    opacity: 100%;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
