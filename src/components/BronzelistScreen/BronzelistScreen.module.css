@@ -11,6 +11,18 @@
   width: calc(100% - 2 * 10px);
   background: rgb(var(--bronze));
   padding: 14px 10px;
+
+  animation: slide-down 1s ease;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
 }
 
 .title {
