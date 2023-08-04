@@ -28,10 +28,24 @@
 .btns-container {
   margin-top: 50px;
   width: 80%;
+  position: relative;
+}
+
+.page-btns-container {
+  width: 100%;
 
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  transition: opacity 0.5s ease;
+}
+
+.done-btn {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 
   transition: opacity 0.5s ease;
 }
