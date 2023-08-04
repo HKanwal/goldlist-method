@@ -13,16 +13,16 @@
   font-size: 18px;
 }
 
-.goal-text:hover {
-  cursor: pointer;
-}
-
 .text-completed {
   margin-left: var(--space-between);
 }
 
 .text-incomplete {
   margin-left: calc(var(--space-between) + var(--svg-dimension));
+}
+
+.text-incomplete:hover {
+  cursor: pointer;
 }
 
 .text-incomplete:active {
