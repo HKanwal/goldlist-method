@@ -2,6 +2,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Styles from "./App.module.css";
 import BronzelistScreen from "./components/BronzelistScreen/BronzelistScreen";
 import GoalScreen from "./components/GoalScreen/GoalScreen";
+import { useState } from "react";
 
 const darkTheme = createTheme({
   palette: {
@@ -10,11 +11,16 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  const [screen, setScreen] = useState<"GoalScreen" | "ListScreen">("GoalScreen");
+
   return (
     <ThemeProvider theme={darkTheme}>
       <div className={Styles["app-container"]}>
-        <GoalScreen />
-        {/* <BronzelistScreen /> */}
+        {screen === "GoalScreen" ? (
+          <GoalScreen onHeadlistClick={() => setScreen("ListScreen")} />
+        ) : (
+          <BronzelistScreen />
+        )}
       </div>
     </ThemeProvider>
   );

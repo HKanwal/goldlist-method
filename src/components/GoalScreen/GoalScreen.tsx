@@ -4,7 +4,11 @@ import Styles from "./GoalScreen.module.css";
 import Storage, { getToday, Goal as GoalType } from "../../helpers/StorageWrapper";
 import constants from "../../constants";
 
-function GoalScreen() {
+interface GoalScreenProps {
+  onHeadlistClick: () => void;
+}
+
+function GoalScreen(props: GoalScreenProps) {
   const [goals, setGoals] = useState<GoalType[]>([]);
 
   useEffect(() => {
@@ -34,12 +38,25 @@ function GoalScreen() {
     }
   }, []);
 
+  const handleGoalClick = (goal: GoalType["goal"]) => {
+    if (goal === "CREATE HEADLIST" || goal === "CONTINUE HEADLIST") {
+      props.onHeadlistClick();
+    }
+  };
+
   return (
     <div className={Styles["screen-container"]}>
       <div className={Styles["goal-container"]}>
         <h2 className={Styles.title}>FOR TODAY</h2>
         {goals.map((goal) => {
-          return <Goal key={goal.goal} text={goal.goal} completed={goal.completed} />;
+          return (
+            <Goal
+              key={goal.goal}
+              text={goal.goal}
+              completed={goal.completed}
+              onClick={() => handleGoalClick(goal.goal)}
+            />
+          );
         })}
       </div>
     </div>
