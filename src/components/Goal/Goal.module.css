@@ -3,7 +3,6 @@
 
   display: flex;
   align-items: center;
-  padding-top: 15px;
 
   --space-between: 12px;
   --svg-dimension: 24px;

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Goal from "../Goal/Goal";
 import Styles from "./GoalScreen.module.css";
 import Storage, { getToday, Goal as GoalType } from "../../helpers/StorageWrapper";
-import constants from "../../constants";
 
 interface GoalScreenProps {
   onHeadlistClick: () => void;
@@ -24,11 +23,6 @@ function GoalScreen(props: GoalScreenProps) {
           goal: "CREATE HEADLIST",
           completed: false,
         });
-      } else if (headlist.length < constants.headlistLength) {
-        goals.push({
-          goal: "CONTINUE HEADLIST",
-          completed: false,
-        });
       }
 
       setGoals(goals);
@@ -46,16 +40,23 @@ function GoalScreen(props: GoalScreenProps) {
 
   return (
     <div className={Styles["screen-container"]}>
-      <div className={Styles["goal-container"]}>
-        <h2 className={Styles.title}>FOR TODAY</h2>
-        {goals.map((goal) => {
+      <div className={Styles["goals-container"]}>
+        <h2 className={Styles.title} style={{ animation: "show-up 1s ease" }}>
+          FOR TODAY
+        </h2>
+        {goals.map((goal, i) => {
           return (
-            <Goal
-              key={goal.goal}
-              text={goal.goal}
-              completed={goal.completed}
-              onClick={() => handleGoalClick(goal.goal)}
-            />
+            <div
+              className={Styles["goal-container"]}
+              key={i}
+              style={{ animation: `show-up 1s ${0.2 * (i + 1)}s ease forwards` }}
+            >
+              <Goal
+                text={goal.goal}
+                completed={goal.completed}
+                onClick={() => handleGoalClick(goal.goal)}
+              />
+            </div>
           );
         })}
       </div>
