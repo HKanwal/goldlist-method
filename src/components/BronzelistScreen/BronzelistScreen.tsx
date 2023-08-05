@@ -16,6 +16,14 @@ function BronzelistScreen(props: BronzelistScreenProps) {
   const [showDone, setShowDone] = useState(false);
 
   useEffect(() => {
+    const todaysHl = Storage.getHeadlist(getToday());
+
+    if (todaysHl !== null) {
+      setPageNum(todaysHl.length + 1);
+    }
+  }, []);
+
+  useEffect(() => {
     if (pageNum === constants.headlistLength && pageValid) {
       setShowDone(true);
     }

@@ -14,12 +14,16 @@ export interface NewTransInputsProps {
    */
   displacement: number;
   onValidityChange: (valid: boolean) => void;
+  /**
+   * Initial translation to display.
+   */
+  trans?: Translation;
   onTransChange: (newTrans: Translation) => void;
 }
 
 function NewTransInputs(props: NewTransInputsProps) {
-  const [phraseRef, phraseField] = useField([Validators.required]);
-  const [meaningRef, meaningField] = useField([Validators.required]);
+  const [phraseRef, phraseField] = useField(props.trans?.phrase ?? "", [Validators.required]);
+  const [meaningRef, meaningField] = useField(props.trans?.meaning ?? "", [Validators.required]);
   const valid =
     phraseField.dirty &&
     meaningField.dirty &&

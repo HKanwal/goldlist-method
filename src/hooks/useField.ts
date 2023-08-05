@@ -34,15 +34,17 @@ export const Validators: Validators = {
  * changes to ref do not.
  */
 function useField(
+  initialValue: string,
   validators: Validator[]
 ): [React.MutableRefObject<HTMLInputElement | undefined>, Field] {
   const ref = useRef<HTMLInputElement>();
   const [field, setField] = useState<Field>({
-    value: "",
+    value: initialValue,
     touched: false,
     dirty: false,
     errors: [],
   });
+  const [firstRender, setFirstRender] = useState(true);
 
   const validate = useCallback(() => {
     for (const validator of validators) {
@@ -67,6 +69,11 @@ function useField(
 
   useEffect(() => {
     if (ref.current !== undefined) {
+      if (firstRender) {
+        ref.current.value = field.value;
+        setFirstRender(false);
+      }
+
       ref.current.onfocus = () => {
         setField((prevState) => {
           return { ...prevState, touched: true };
